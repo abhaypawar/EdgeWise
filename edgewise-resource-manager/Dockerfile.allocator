@@ -1,0 +1,4 @@
+# Dockerfile.allocator
+FROM python:3.8-slim
+COPY allocate_resources.py /app/allocate_resources.py
+CMD ["python", "/app/allocate_resources.py"]
