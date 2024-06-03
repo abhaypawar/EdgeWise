@@ -1,0 +1,5 @@
+# Dockerfile.monitor
+FROM python:3.8-slim
+COPY monitor.py /app/monitor.py
+RUN pip install psutil
+CMD ["python", "/app/monitor.py"]
