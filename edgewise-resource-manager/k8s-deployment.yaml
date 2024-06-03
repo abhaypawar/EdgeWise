@@ -1,0 +1,29 @@
+# k8s-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge-computing-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edge-computing-manager
+  template:
+    metadata:
+      labels:
+        app: edge-computing-manager
+    spec:
+      containers:
+      - name: monitor
+        image: your-dockerhub-username/edge-monitor
+        volumeMounts:
+        - mountPath: /app/metrics.json
+          name: metrics-volume
+      - name: allocator
+        image: your-dockerhub-username/resource-allocator
+        volumeMounts:
+        - mountPath: /app/metrics.json
+          name: metrics-volume
+      volumes:
+      - name: metrics-volume
+        emptyDir: {}
